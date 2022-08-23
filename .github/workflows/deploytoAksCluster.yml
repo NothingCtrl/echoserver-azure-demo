@@ -14,8 +14,8 @@ jobs:
     - name: Build and push image to ACR
       id: build-image
       run: |
-        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t rangoregistrytest.azurecr.io/rangotest:${{ github.sha }} --label dockerfile-path=Dockerfile
-        docker push rangoregistrytest.azurecr.io/rangotest:${{ github.sha }}
+        docker build "$GITHUB_WORKSPACE/" -f  "Dockerfile" -t rangoregistrytest.azurecr.io/echoserver:${{ github.sha }} --label dockerfile-path=Dockerfile
+        docker push rangoregistrytest.azurecr.io/echoserver:${{ github.sha }}
     
     - uses: azure/k8s-set-context@v1
       with:
@@ -42,9 +42,9 @@ jobs:
       with:
         namespace: default
         manifests: |
-          manifests/deployment-1.yml
-          manifests/service-1.yml
-          manifests/ingress-1.yml
+          manifests/deployment.yml
+          manifests/service.yml
+          manifests/ingress.yml
         images: |
           rangoregistrytest.azurecr.io/echoserver:${{ github.sha }}
         imagepullsecrets: |
