@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "rangotest-294c"
+    labels:
+        app: "rangotest-294c"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: default-rangotest-294c.14efaeab5490490da430.eastasia.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "rangotest-294c"
+                servicePort: 80
